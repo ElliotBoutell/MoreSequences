@@ -18,18 +18,18 @@ def main():
     run_test_make_less_simple_string()
 
     # ------------------------------------------------------------------
-    # TODO: 8. Uncomment the tests below before working TO DO 9.
+    # Done: 8. Uncomment the tests below before working TO DO 9.
     #   They launch annoying rg.RoseWindows on each run that you don't want
     #   until you get to TO DO 9 and 10.
     # ------------------------------------------------------------------
-    # run_test_draw_shapes()
-    # run_test_rectangles_from_circles()
+    run_test_draw_shapes()
+    run_test_rectangles_from_circles()
 
 
 def run_test_make_simple_list():
     """ Tests the   make_simple_list    function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # Done: 2. Implement this TEST function.
     #   It TESTS the  make_simple_list  function defined below.
     #   Include at least **   2   ** tests.
     #
@@ -47,7 +47,10 @@ def run_test_make_simple_list():
     print('Actual:  ', actual)
 
     # Test 2 (add your test here):
-
+    expected = [71, 72, 73, 74]
+    actual = make_simple_list(71, 74)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
 
 def make_simple_list(m, n):
     """
@@ -67,9 +70,13 @@ def make_simple_list(m, n):
       :type m: int
       :type n: int
     """
+    simple_list = []
+    for k in range(n - m + 1):
+        simple_list = simple_list + [k + m]
 
+    return simple_list
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # Done: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
 
@@ -77,7 +84,7 @@ def make_simple_list(m, n):
 def run_test_make_simple_string():
     """ Tests the   make_simple_string    function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # Done: 4. Implement this TEST function.
     #   It TESTS the  make_simple_string  function defined below.
     #   Include at least **   2   ** tests.
     #
@@ -87,7 +94,16 @@ def run_test_make_simple_string():
     print('--------------------------------------------------')
     print('Testing the   make_simple_string   function:')
     print('--------------------------------------------------')
-
+    # Test 1:
+    expected = '5-6-7-8-9-10-11-12-13-'
+    actual = make_simple_string(5, 13)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+    # Test 2
+    expected = '71-72-73-74-'
+    actual = make_simple_string(71, 74)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
 
 def make_simple_string(m, n):
     """
@@ -109,8 +125,13 @@ def make_simple_string(m, n):
       :type m: int
       :type n: int
     """
+    simple_string = ''
+    for k in range(n - m + 1):
+        simple_string = simple_string + (str(k + m) + '-')
+
+    return simple_string
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # Done: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
 
@@ -118,7 +139,7 @@ def make_simple_string(m, n):
 def run_test_make_less_simple_string():
     """ Tests the   make_less_simple_string    function. """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement this TEST function.
+    # Done: 6. Implement this TEST function.
     #   It TESTS the  make_less_simple_string  function defined below.
     #   Include at least **   2   ** tests.
     #
@@ -128,7 +149,16 @@ def run_test_make_less_simple_string():
     print('--------------------------------------------------')
     print('Testing the   make_less_simple_string   function:')
     print('--------------------------------------------------')
-
+    # Test 1:
+    expected = '5-6-7-8-9-10-11-12-13'
+    actual = make_less_simple_string(5, 13)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
+    # Test 2
+    expected = '71-72-73-74'
+    actual = make_less_simple_string(71, 74)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
 
 def make_less_simple_string(m, n):
     """
@@ -152,8 +182,16 @@ def make_less_simple_string(m, n):
       :type m: int
       :type n: int
     """
+    less_simple_string = ''
+    for k in range(n - m + 1):
+        if k == (n - m):
+            less_simple_string = less_simple_string + (str(k + m))
+        else:
+            less_simple_string = less_simple_string + (str(k + m) + '-')
+
+    return less_simple_string
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # Done: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -----------------------------------------------------------------
 
@@ -235,8 +273,12 @@ def draw_shapes(shapes, window):
       :type shapes:  list | tuple of rg._Shape
       :type window:  rg.RoseWindow
     """
+    for k in range(len(shapes)):
+        shape = shapes[k]
+        shape.attach_to(window)
+    window.render()
     # ------------------------------------------------------------------
-    # TODO: 9. Implement and test this function. Make sure you do TO DO 8 in main first!
+    # Done: 9. Implement and test this function. Make sure you do TO DO 8 in main first!
     #     The testing code is already written for you (that you just enabled in TO DO 8).
     #
     ####################################################################
@@ -346,8 +388,19 @@ def rectangles_from_circles(circles):
       :type circles:  list | tuple of rg.Circle
       :rtype: list of rg.Rectangles
     """
+    rectangle_list = []
+    for k in range(len(circles)):
+        corner_1_x = circles[k].center.x - circles[k].radius
+        corner_1_y = circles[k].center.y - circles[k].radius
+        corner_1 = rg.Point(corner_1_x, corner_1_y)
+        corner_2_x = circles[k].center.x + circles[k].radius
+        corner_2_y = circles[k].center.y + circles[k].radius
+        corner_2 = rg.Point(corner_2_x, corner_2_y)
+        rectangle = rg.Rectangle(corner_1, corner_2)
+        rectangle_list = rectangle_list + [rectangle]
+    return rectangle_list
     # ------------------------------------------------------------------
-    # TODO: 10. Implement and test this function.
+    # Done: 10. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     ####################################################################
